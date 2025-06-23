@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grow a Garden - Trade Center</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #dceefb, #e0f7fa);
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    aside {
+      width: 15%;
+      background: #f1f1f1;
+      padding: 10px;
+      text-align: center;
+      border-right: 1px solid #ccc;
+    }
+    header {
+      background: linear-gradient(90deg, #38b2ac, #4fd1c5);
+      padding: 20px;
+      color: white;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    main {
+      width: 70%;
+      margin: auto;
+      padding: 20px;
+    }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 6px; font-weight: 600; color: #333; }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #38b2ac;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover { background-color: #319795; }
+    .trade, .feedback, .voucher {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .notification {
+      background-color: #edfdfd;
+      padding: 12px;
+      border-left: 5px solid #38b2ac;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .live-feed {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 15px;
+      height: 300px;
+      overflow-y: auto;
+      margin-top: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .search-bar { margin-bottom: 20px; }
+    .game-images {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .game-images img {
+      max-width: 100px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .filter-options { margin-bottom: 20px; }
+    #user-info {
+      margin-bottom: 20px;
+      background: #fefefe;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    #online-users {
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <p><strong>Ad Banner 1</strong></p>
+    <hr>
+    <p><strong>Ad Banner 2</strong></p>
+  </aside>
+
+  <main>
+    <header>
+      <h1>🌱 Grow a Garden - Trade Center 🌸</h1>
+    </header>
+
+    <div id="user-info">
+      <input type="text" id="nickname" placeholder="Nickname">
+      <input type="email" id="email" placeholder="Email (optional)">
+      <input type="password" id="password" placeholder="Password">
+      <input type="text" id="avatar" placeholder="Avatar URL (optional)">
+      <button onclick="login()">Login</button>
+      <p><button onclick="donate()">💖 Support Us on PayPal</button></p>
+      <p id="online-users">🔵 Users online: <span id="userCount">1</span></p>
+    </div>
+
+    <!-- Additional functionality would go here -->
+
+    <script>
+      const pets = [
+        "Golden Lab", "Bunny", "Cat", "Chicken", "Deer", "Black Bunny", "Rabbit", "Orange Tabby",
+        "Spotted Deer", "Monkey", "Pig", "Mole", "Otter", "Bee", "Bear Bee", "Petal Bee", "Queen Bee",
+        "Butterfly", "Tarantula Hawk", "Mini Octopus", "Flamingo", "Orangutan", "Polar Bear",
+        "Red Giant Ant", "Dragonfly", "Disco Bee", "Wasp", "Capybara", "Mimic Octopus", "Toucan",
+        "Seal", "Sea Turtle", "Crab"
+      ];
+
+      let username = null;
+      let onlineUsers = Math.floor(Math.random() * 5) + 1;
+      document.getElementById('userCount').innerText = onlineUsers;
+
+      function login() {
+        const nickname = document.getElementById('nickname').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if (!nickname || !password) {
+          alert('Nickname and password are required. Email is optional.');
+          return;
+        }
+
+        username = nickname;
+        alert(`Welcome, ${username}! You can now post trades.`);
+      }
+
+      function donate() {
+        window.open("https://www.paypal.com/donate", "_blank");
+      }
+    </script>
+  </main>
+
+  <aside>
+    <p><strong>Ad Banner 3</strong></p>
+    <hr>
+    <p><strong>Ad Banner 4</strong></p>
+  </aside>
+</body>
+</html>
+

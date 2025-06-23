@@ -1,192 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grow a Garden - Trade Center</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(to right, #dceefb, #e0f7fa);
-      margin: 0;
-      padding: 0;
-      display: flex;
-    }
-    aside {
-      width: 15%;
-      background: #f1f1f1;
-      padding: 10px;
-      text-align: center;
-      border-right: 1px solid #ccc;
-    }
-    header {
-      background: linear-gradient(90deg, #38b2ac, #4fd1c5);
-      padding: 20px;
-      color: white;
-      text-align: center;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-    main {
-      width: 70%;
-      margin: auto;
-      padding: 20px;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-      color: #333;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-    button {
-      background-color: #38b2ac;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #319795;
-    }
-    .trade, .feedback, .voucher {
-      border: 1px solid #ddd;
-      padding: 15px;
-      margin-bottom: 12px;
-      border-radius: 10px;
-      background-color: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    .notification {
-      background-color: #edfdfd;
-      padding: 12px;
-      border-left: 5px solid #38b2ac;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    }
-    .live-feed {
-      background: white;
-      border: 1px solid #ddd;
-      padding: 15px;
-      height: 300px;
-      overflow-y: auto;
-      margin-top: 10px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    .search-bar {
-      margin-bottom: 20px;
-    }
-    .game-images {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .game-images img {
-      max-width: 100px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .filter-options {
-      margin-bottom: 20px;
-    }
-  </style>
-</head>
-<body>
-  <aside>
-    <p><strong>Ad Banner 1</strong></p>
-    <hr>
-    <p><strong>Ad Banner 2</strong></p>
-  </aside>
+<script>
+  const trades = [];
+  const notifications = [];
+  const vouches = [];
 
-  <main>
-    <header>
-      <h1>🌱 Grow a Garden - Trade Center 🌸</h1>
-    </header>
+  function updateTradeFields() {
+    const type = document.getElementById('tradeType').value;
+    const container = document.getElementById('trade-details');
+    let html = '';
 
-    <div class="game-images">
-      <img src="https://tr.rbxcdn.com/22965bb963e1a15e0c51cf10cd476f4b/768/432/Image/Png" alt="Grow a Garden Image 1">
-      <img src="https://tr.rbxcdn.com/7e85084a7e9a76e3fcdff6f85b182cf0/768/432/Image/Png" alt="Grow a Garden Image 2">
-    </div>
-
-    <div class="form-group">
-      <label for="title">Trade Title</label>
-      <input type="text" id="title" placeholder="e.g., Trading pet for shekels">
-    </div>
-
-    <div class="form-group">
-      <label for="tradeType">Trade Type</label>
-      <select id="tradeType" onchange="updateTradeFields()">
-        <option value="pet-for-pet">Pet for Pet</option>
-        <option value="pet-for-shekels">Pet for Shekels</option>
-        <option value="shekels-for-pet">Shekels for Pet</option>
-      </select>
-    </div>
-
-    <div class="form-group" id="trade-details"></div>
-
-    <button onclick="postTrade()">Post Offer</button>
-    <button onclick="sendFeedback()">Send Feedback</button>
-
-    <div class="filter-options">
-      <label for="filterType">Filter by Trade Type:</label>
-      <select id="filterType" onchange="updateFeed()">
-        <option value="all">All</option>
-        <option value="pet-for-pet">Pet for Pet</option>
-        <option value="pet-for-shekels">Pet for Shekels</option>
-        <option value="shekels-for-pet">Shekels for Pet</option>
-      </select>
-    </div>
-
-    <div class="search-bar">
-      <label for="search">Search Offers:</label>
-      <input type="text" id="search" oninput="updateFeed()" placeholder="Search by keyword...">
-    </div>
-
-    <h2>📋 Live Trade Offers</h2>
-    <div id="trade-feed" class="live-feed"></div>
-
-    <h2>🔔 Notifications</h2>
-    <div id="notifications"></div>
-
-    <h2>⭐ Trade Reviews (Vouches)</h2>
-    <div id="vouches" class="live-feed"></div>
-  </main>
-
-  <aside>
-    <p><strong>Ad Banner 3</strong></p>
-    <hr>
-    <p><strong>Ad Banner 4</strong></p>
-  </aside>
-
-  <script>
-    const trades = [];
-    const notifications = [];
-    const vouches = [];
-
-    function updateTradeFields() {
-      const type = document.getElementById('tradeType').value;
-      const container = document.getElementById('trade-details');
-      let html = '';
-      
-      if (type === 'pet-for-pet') {
+    switch (type) {
+      case 'pet-for-pet':
         html = `
           <label for="offerPet">Your Pet:</label>
           <select id="offerPet">
@@ -201,7 +24,9 @@
             <option value="Dragon">Dragon</option>
           </select>
         `;
-      } else if (type === 'pet-for-shekels') {
+        break;
+
+      case 'pet-for-shekels':
         html = `
           <label for="offerPet">Your Pet:</label>
           <select id="offerPet">
@@ -212,7 +37,9 @@
           <label for="wantAmount">Wanted Shekels:</label>
           <input type="text" id="wantAmount" placeholder="e.g., 500B, 1T">
         `;
-      } else {
+        break;
+
+      case 'shekels-for-pet':
         html = `
           <label for="offerAmount">Your Shekels:</label>
           <input type="text" id="offerAmount" placeholder="e.g., 1T">
@@ -223,97 +50,118 @@
             <option value="Dragon">Dragon</option>
           </select>
         `;
-      }
-      container.innerHTML = html;
+        break;
     }
 
-    updateTradeFields();
+    container.innerHTML = html;
+  }
 
-    function postTrade() {
-      const title = document.getElementById('title').value;
-      const tradeType = document.getElementById('tradeType').value;
-      let offer = '';
-      let want = '';
+  function postTrade() {
+    const title = document.getElementById('title').value;
+    const tradeType = document.getElementById('tradeType').value;
 
-      if (tradeType === 'pet-for-pet') {
-        offer = document.getElementById('offerPet').value;
-        want = document.getElementById('wantPet').value;
-      } else if (tradeType === 'pet-for-shekels') {
-        offer = document.getElementById('offerPet').value;
-        want = document.getElementById('wantAmount').value;
-      } else {
-        offer = document.getElementById('offerAmount').value;
-        want = document.getElementById('wantPet').value;
-      }
+    let offer = '';
+    let want = '';
 
-      const trade = { title, type: tradeType, offer, want, user: "Anonymous", rating: 5 };
-      trades.push(trade);
-      notifications.push(`New trade: ${title}`);
-      updateFeed();
-      updateNotifications();
+    if (tradeType === 'pet-for-pet') {
+      offer = document.getElementById('offerPet').value;
+      want = document.getElementById('wantPet').value;
+    } else if (tradeType === 'pet-for-shekels') {
+      offer = document.getElementById('offerPet').value;
+      want = document.getElementById('wantAmount').value;
+    } else if (tradeType === 'shekels-for-pet') {
+      offer = document.getElementById('offerAmount').value;
+      want = document.getElementById('wantPet').value;
     }
 
-    function updateFeed() {
-      const feed = document.getElementById('trade-feed');
-      const searchTerm = document.getElementById('search').value.toLowerCase();
-      const filterType = document.getElementById('filterType').value;
-      feed.innerHTML = '';
+    const trade = {
+      title,
+      type: tradeType,
+      offer,
+      want,
+      user: "Anonymous",
+      rating: 5
+    };
 
-      trades.filter(t => (filterType === 'all' || t.type === filterType))
-            .filter(t => t.title.toLowerCase().includes(searchTerm) || t.offer.toLowerCase().includes(searchTerm) || t.want.toLowerCase().includes(searchTerm))
-            .forEach((t, i) => {
+    trades.push(trade);
+    notifications.push(`New trade: ${title}`);
+    updateFeed();
+    updateNotifications();
+  }
+
+  function updateFeed() {
+    const feed = document.getElementById('trade-feed');
+    const searchTerm = document.getElementById('search').value.toLowerCase();
+    const filterType = document.getElementById('filterType').value;
+    feed.innerHTML = '';
+
+    trades
+      .filter(t => filterType === 'all' || t.type === filterType)
+      .filter(t => t.title.toLowerCase().includes(searchTerm) || t.offer.toLowerCase().includes(searchTerm) || t.want.toLowerCase().includes(searchTerm))
+      .forEach((t, index) => {
         const div = document.createElement('div');
         div.className = 'trade';
-        div.innerHTML = `<strong>${t.title}</strong><br><em>Type: ${t.type}</em><p>Offer: ${t.offer} → Want: ${t.want}</p><p>User: ${t.user} | ⭐ ${t.rating}</p>
-          <button onclick="acceptTrade(${i})">Accept Trade</button>`;
+        div.innerHTML = `
+          <strong>${t.title}</strong><br>
+          <em>Type: ${t.type}</em>
+          <p>Offer: ${t.offer} → Want: ${t.want}</p>
+          <p>User: ${t.user} | ⭐ ${t.rating}</p>
+          <button onclick="acceptTrade(${index})">Accept Trade</button>
+        `;
         feed.appendChild(div);
       });
-    }
+  }
 
-    function acceptTrade(index) {
-      const trade = trades[index];
-      const message = `You accepted trade: ${trade.title}`;
-      notifications.push(message);
-      updateNotifications();
-      addVoucher(trade);
-    }
+  function acceptTrade(index) {
+    const trade = trades[index];
+    const message = `You accepted trade: ${trade.title}`;
+    notifications.push(message);
+    updateNotifications();
+    addVoucher(trade);
+  }
 
-    function updateNotifications() {
-      const container = document.getElementById('notifications');
-      container.innerHTML = '';
-      notifications.slice().reverse().forEach(msg => {
-        const div = document.createElement('div');
-        div.className = 'notification';
-        div.textContent = msg;
-        container.appendChild(div);
-      });
-    }
+  function updateNotifications() {
+    const container = document.getElementById('notifications');
+    container.innerHTML = '';
 
-    function addVoucher(trade) {
-      const container = document.getElementById('vouches');
+    notifications.slice().reverse().forEach(msg => {
       const div = document.createElement('div');
-      div.className = 'voucher';
-      div.innerHTML = `Trade completed with ${trade.user}. Leave a rating: 
-        <select onchange="rateTrade(this, '${trade.title}')">
-          <option value="5">⭐⭐⭐⭐⭐</option>
-          <option value="4">⭐⭐⭐⭐</option>
-          <option value="3">⭐⭐⭐</option>
-          <option value="2">⭐⭐</option>
-          <option value="1">⭐</option>
-        </select>`;
+      div.className = 'notification';
+      div.textContent = msg;
       container.appendChild(div);
-    }
+    });
+  }
 
-    function rateTrade(select, title) {
-      const rating = parseInt(select.value);
-      const trade = trades.find(t => t.title === title);
-      if (trade) trade.rating = rating;
+  function addVoucher(trade) {
+    const container = document.getElementById('vouches');
+    const div = document.createElement('div');
+    div.className = 'voucher';
+    div.innerHTML = `
+      Trade completed with ${trade.user}. Leave a rating:
+      <select onchange="rateTrade(this, '${trade.title}')">
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+      </select>
+    `;
+    container.appendChild(div);
+  }
+
+  function rateTrade(select, title) {
+    const rating = parseInt(select.value);
+    const trade = trades.find(t => t.title === title);
+    if (trade) {
+      trade.rating = rating;
       updateFeed();
     }
+  }
 
-    function sendFeedback() {
-      alert('Thanks! Feedback form coming soon.');
-    }
-  </script>
-</body>
-</html>
+  function sendFeedback() {
+    alert('Thanks! Feedback form coming soon.');
+  }
+
+  // Initialize on load
+  updateTradeFields();
+</script>

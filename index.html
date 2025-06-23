@@ -1,340 +1,322 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Grow a Garden - Trade Center</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-<style>
-  * { box-sizing: border-box; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(to right, #dceefb, #e0f7fa);
-    margin: 0; padding: 0; min-height: 100vh;
-    display: flex; flex-direction: column;
-  }
-  header {
-    background: linear-gradient(90deg, #38b2ac, #4fd1c5);
-    padding: 15px 20px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    flex-grow: 1;
-    min-width: 200px;
-  }
-  #onlineCount {
-    font-weight: 600;
-    background: #2c7a7b;
-    padding: 6px 12px;
-    border-radius: 12px;
-    margin-right: 20px;
-    white-space: nowrap;
-  }
-  #userInfo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-  }
-  #nicknameDisplay {
-    font-weight: 600;
-  }
-  .profile-photo {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid white;
-    cursor: pointer;
-  }
-  button {
-    background-color: #38b2ac;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 1rem;
-  }
-  button:hover {
-    background-color: #319795;
-  }
-  main {
-    flex-grow: 1;
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  aside {
-    width: 15%;
-    min-width: 120px;
-    background: #f1f1f1;
-    padding: 10px;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    user-select: none;
-  }
-  section.content {
-    flex-grow: 1;
-    max-width: 900px;
-    min-width: 320px;
-  }
-  .form-group {
-    margin-bottom: 20px;
-  }
-  label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-    color: #333;
-  }
-  input, select, textarea, button {
-    font-family: inherit;
-    font-size: 16px;
-  }
-  input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
-  .login-section, .trade-section {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-  }
-  .hidden {
-    display: none !important;
-  }
-  #trade-feed, #vouches {
-    background: white;
-    border: 1px solid #ddd;
-    padding: 15px;
-    height: 280px;
-    overflow-y: auto;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    margin-top: 10px;
-  }
-  #trade-feed > div, #vouches > div {
-    border-bottom: 1px solid #eee;
-    padding: 8px 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  #trade-feed img, #vouches img {
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-  }
-  #trade-feed div:last-child, #vouches div:last-child {
-    border-bottom: none;
-  }
-  .trade-details {
-    font-size: 0.9rem;
-    color: #555;
-  }
-  .trade-title {
-    font-weight: 600;
-  }
-  .trade-user {
-    font-weight: 700;
-  }
-  .trade-date {
-    font-size: 0.75rem;
-    color: #999;
-    margin-left: auto;
-    white-space: nowrap;
-  }
-  @media (max-width: 768px) {
-    main {
-      flex-direction: column;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grow a Garden - Trade Center</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #dceefb, #e0f7fa);
+      margin: 0;
+      padding: 0;
+      display: flex;
     }
     aside {
-      width: 100%;
-      min-width: auto;
-      margin-bottom: 20px;
-    }
-    section.content {
-      max-width: 100%;
+      width: 15%;
+      background: #f1f1f1;
+      padding: 10px;
+      text-align: center;
+      border-right: 1px solid #ccc;
     }
     header {
-      flex-direction: column;
+      background: linear-gradient(90deg, #38b2ac, #4fd1c5);
+      padding: 20px;
+      color: white;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    main {
+      width: 70%;
+      margin: auto;
+      padding: 20px;
+    }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 6px; font-weight: 600; color: #333; }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #38b2ac;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover { background-color: #319795; }
+    .trade, .feedback, .voucher {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .notification {
+      background-color: #edfdfd;
+      padding: 12px;
+      border-left: 5px solid #38b2ac;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .live-feed {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 15px;
+      height: 300px;
+      overflow-y: auto;
+      margin-top: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .search-bar { margin-bottom: 20px; }
+    .game-images {
+      display: flex;
       gap: 10px;
-      align-items: flex-start;
+      margin-bottom: 20px;
     }
-    #onlineCount, #userInfo {
-      margin-right: 0;
+    .game-images img {
+      max-width: 100px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
-  }
-</style>
+    .filter-options { margin-bottom: 20px; }
+    #user-info {
+      margin-bottom: 20px;
+      background: #fefefe;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    #online-users {
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: right;
+    }
+  </style>
 </head>
 <body>
-
-<header>
-  <h1>🌱 Grow a Garden - Trade Center 🌸</h1>
-  <div style="display:flex; align-items:center; gap:15px; flex-wrap: wrap;">
-    <div id="onlineCount">Online: 0</div>
-
-    <div id="userInfo" class="hidden">
-      <span id="nicknameDisplay"></span>
-      <img id="profilePic" class="profile-photo" src="https://via.placeholder.com/40?text=?" alt="Foto profilo" title="Clicca per cambiare foto profilo" />
-      <input type="file" id="profilePicInput" accept="image/*" style="display:none" />
-    </div>
-
-    <button id="loginBtn">Login</button>
-    <button id="logoutBtn" class="hidden">Logout</button>
-    <button id="donateBtn" title="Supportaci con una donazione">💖 Supportaci</button>
-  </div>
-</header>
-
-<main>
   <aside>
     <p><strong>Ad Banner 1</strong></p>
-    <hr />
+    <hr>
     <p><strong>Ad Banner 2</strong></p>
   </aside>
 
-  <section class="content">
+  <main>
+    <header>
+      <h1>🌱 Grow a Garden - Trade Center 🌸</h1>
+    </header>
 
-    <!-- Login Form -->
-    <div id="loginSection" class="login-section">
-      <h2>Login / Registrati</h2>
-      <div class="form-group">
-        <label for="nicknameInput">Nickname (obbligatorio)</label>
-        <input type="text" id="nicknameInput" placeholder="Inserisci il tuo nickname" autocomplete="off" />
-      </div>
-      <div class="form-group">
-        <label for="emailInput">Email (opzionale)</label>
-        <input type="email" id="emailInput" placeholder="Inserisci la tua email" autocomplete="off" />
-      </div>
-      <button id="doLoginBtn">Accedi</button>
+    <div id="user-info">
+      <p><strong>Login to create an account</strong></p>
+      <input type="text" id="nickname" placeholder="Nickname">
+      <input type="email" id="email" placeholder="Email (optional)">
+      <input type="text" id="avatar" placeholder="Avatar URL (optional)">
+      <button onclick="login()">Login</button>
+      <p><button onclick="donate()">💖 Support Us on PayPal</button></p>
+      <p id="online-users">🔵 Users online: <span id="userCount">1</span></p>
     </div>
 
-    <!-- Trade & Feedback Section (visibile solo dopo login) -->
-    <div id="tradeSection" class="trade-section hidden">
-
-      <div class="form-group">
-        <label for="title">Titolo dell'offerta</label>
-        <input type="text" id="title" placeholder="Es: Scambio pet per shekel" autocomplete="off" />
-      </div>
-
-      <div class="form-group">
-        <label for="tradeType">Tipo di scambio</label>
-        <select id="tradeType" onchange="updateTradeFields()">
-          <option value="pet-for-pet">Pet per Pet</option>
-          <option value="pet-for-shekels">Pet per Shekels</option>
-          <option value="shekels-for-pet">Shekels per Pet</option>
-        </select>
-      </div>
-
-      <div class="form-group" id="trade-details"></div>
-
-      <button onclick="postTrade()">Pubblica Offerta</button>
-      <button onclick="sendFeedback()">Invia Feedback</button>
-
-      <hr />
-
-      <div class="form-group">
-        <label for="filterType">Filtra per tipo di scambio:</label>
-        <select id="filterType" onchange="updateFeed()">
-          <option value="all">Tutti</option>
-          <option value="pet-for-pet">Pet per Pet</option>
-          <option value="pet-for-shekels">Pet per Shekels</option>
-          <option value="shekels-for-pet">Shekels per Pet</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="search">Cerca offerte:</label>
-        <input type="text" id="search" oninput="updateFeed()" placeholder="Cerca per parola chiave..." autocomplete="off" />
-      </div>
-
-      <h2>📋 Offerte in tempo reale</h2>
-      <div id="trade-feed"></div>
-
-      <h2>⭐ Recensioni e Vouches</h2>
-      <div id="vouches"></div>
+    <div class="game-images">
+      <img src="https://tr.rbxcdn.com/22965bb963e1a15e0c51cf10cd476f4b/768/432/Image/Png" alt="Grow a Garden Image 1">
+      <img src="https://tr.rbxcdn.com/7e85084a7e9a76e3fcdff6f85b182cf0/768/432/Image/Png" alt="Grow a Garden Image 2">
     </div>
 
-  </section>
+    <div class="form-group">
+      <label for="title">Trade Title</label>
+      <input type="text" id="title" placeholder="e.g., Trading multiple pets for shekels">
+    </div>
+
+    <div class="form-group">
+      <label for="tradeType">Trade Type</label>
+      <select id="tradeType" onchange="updateTradeFields()">
+        <option value="pet-for-pet">Pet for Pet</option>
+        <option value="pet-for-shekels">Pet for Shekels</option>
+        <option value="shekels-for-pet">Shekels for Pet</option>
+      </select>
+    </div>
+
+    <div class="form-group" id="trade-details"></div>
+
+    <button onclick="postTrade()">Post Offer</button>
+    <button onclick="sendFeedback()">Send Feedback</button>
+
+    <div class="filter-options">
+      <label for="filterType">Filter by Trade Type:</label>
+      <select id="filterType" onchange="updateFeed()">
+        <option value="all">All</option>
+        <option value="pet-for-pet">Pet for Pet</option>
+        <option value="pet-for-shekels">Pet for Shekels</option>
+        <option value="shekels-for-pet">Shekels for Pet</option>
+      </select>
+    </div>
+
+    <div class="search-bar">
+      <label for="search">Search Offers:</label>
+      <input type="text" id="search" oninput="updateFeed()" placeholder="Search by keyword...">
+    </div>
+
+    <h2>📋 Live Trade Offers</h2>
+    <div id="trade-feed" class="live-feed"></div>
+
+    <h2>🔔 Notifications</h2>
+    <div id="notifications"></div>
+
+    <h2>⭐ Trade Reviews (Vouches)</h2>
+    <div id="vouches" class="live-feed"></div>
+  </main>
 
   <aside>
     <p><strong>Ad Banner 3</strong></p>
-    <hr />
+    <hr>
     <p><strong>Ad Banner 4</strong></p>
   </aside>
-</main>
 
-<script>
-  // Lista pet aggiornata senza "Dragon"
-  const petList = [
-    "Golden Lab", "Bunny", "Cat", "Chicken", "Deer", "Black Bunny", "Rabbit",
-    "Orange Tabby", "Spotted Deer", "Monkey", "Pig", "Mole", "Otter", "Bee",
-    "Bear Bee", "Petal Bee", "Queen Bee", "Butterfly", "Tarantula Hawk", "Mini Octopus",
-    "Flamingo", "Orangutan", "Polar Bear", "Red Giant Ant", "Dragonfly", "Disco Bee",
-    "Wasp", "Capybara", "Mimic Octopus", "Toucan", "Seal", "Sea Turtle", "Crab"
-  ];
+  <script>
+    const pets = ["Cat", "Dog", "Bunny", "Bee", "Pig", "Sheep", "Chicken", "Cow", "Horse", "Duck", "Goat", "Frog", "Turtle", "Owl"];
+    let username = null;
+    let onlineUsers = Math.floor(Math.random() * 30) + 1;
 
-  let trades = [];
-  let vouches = [];
+    document.getElementById('userCount').innerText = onlineUsers;
 
-  // Simula utenti online (numero casuale ogni 30s)
-  function updateOnlineCount() {
-    const count = Math.floor(Math.random() * 39) + 12; // da 12 a 50
-    document.getElementById('onlineCount').textContent = `Online: ${count}`;
-  }
-  updateOnlineCount();
-  setInterval(updateOnlineCount, 30000);
+    const trades = [], notifications = [], vouches = [];
 
-  // ELEMENTI UI
-  const loginSection = document.getElementById('loginSection');
-  const tradeSection = document.getElementById('tradeSection');
-  const loginBtn = document.getElementById('loginBtn');
-  const logoutBtn = document.getElementById('logoutBtn');
-  const userInfo = document.getElementById('userInfo');
-  const nicknameDisplay = document.getElementById('nicknameDisplay');
-  const profilePic = document.getElementById('profilePic');
-  const profilePicInput = document.getElementById('profilePicInput');
-  const donateBtn = document.getElementById('donateBtn');
+    function login() {
+      const nickname = document.getElementById('nickname').value;
+      if (!nickname.trim()) {
+        alert('Please enter a nickname.');
+        return;
+      }
+      username = nickname.trim();
+      alert(`Welcome, ${username}! You can now post trades.`);
+    }
 
-  let currentUser = null;
+    function donate() {
+      window.open("https://www.paypal.com/donate", "_blank");
+    }
 
-  // Salva utente in localStorage (simula sessione)
-  function saveUser(user) {
-    localStorage.setItem('growGardenUser', JSON.stringify(user));
-  }
-  function loadUser() {
-    const user = localStorage.getItem('growGardenUser');
-    return user ? JSON.parse(user) : null;
-  }
-  function clearUser() {
-    localStorage.removeItem('growGardenUser');
-  }
+    function updateTradeFields() {
+      const type = document.getElementById('tradeType').value;
+      const container = document.getElementById('trade-details');
+      let html = '';
 
-  // Mostra UI logged-in
-  function showLoggedIn(user) {
-    currentUser = user;
-    loginSection.classList.add('hidden');
-    tradeSection.classList.remove('hidden');
-    loginBtn.classList.add('hidden');
-    logoutBtn.classList.remove('hidden');
-    userInfo.classList.remove('hidden');
-    nicknameDisplay.textContent = user.nickname;
-    profilePic.src = user.photo || 'https://via.placeholder.com/40?text=?';
-  }
-  //
+      if (type === 'pet-for-pet' || type === 'pet-for-shekels') {
+        html += `<label for="offerPets">Your Pets:</label><select id="offerPets" multiple>`;
+        pets.forEach(p => html += `<option value="${p}">${p}</option>`);
+        html += `</select>`;
+      }
+      if (type === 'shekels-for-pet') {
+        html += `<label for="offerAmount">Your Shekels:</label><input type="text" id="offerAmount" placeholder="e.g., 1T">`;
+      }
+
+      if (type === 'pet-for-pet' || type === 'shekels-for-pet') {
+        html += `<label for="wantPets">Wanted Pets:</label><select id="wantPets" multiple>`;
+        pets.forEach(p => html += `<option value="${p}">${p}</option>`);
+        html += `</select>`;
+      }
+      if (type === 'pet-for-shekels') {
+        html += `<label for="wantAmount">Wanted Shekels:</label><input type="text" id="wantAmount" placeholder="e.g., 500B, 1T">`;
+      }
+
+      container.innerHTML = html;
+    }
+
+    function postTrade() {
+      if (!username) {
+        alert("You must login before posting a trade.");
+        return;
+      }
+      const title = document.getElementById('title').value;
+      const type = document.getElementById('tradeType').value;
+      let offer = '', want = '';
+
+      if (type === 'pet-for-pet' || type === 'pet-for-shekels') {
+        const selected = Array.from(document.getElementById('offerPets').selectedOptions).map(o => o.value);
+        offer = selected.join(", ");
+      } else {
+        offer = document.getElementById('offerAmount').value;
+      }
+
+      if (type === 'pet-for-pet' || type === 'shekels-for-pet') {
+        const selected = Array.from(document.getElementById('wantPets').selectedOptions).map(o => o.value);
+        want = selected.join(", ");
+      } else {
+        want = document.getElementById('wantAmount').value;
+      }
+
+      const trade = { title, type, offer, want, user: username, rating: 5 };
+      trades.push(trade);
+      notifications.push(`New trade: ${title}`);
+      updateFeed();
+      updateNotifications();
+    }
+
+    function updateFeed() {
+      const feed = document.getElementById('trade-feed');
+      const searchTerm = document.getElementById('search').value.toLowerCase();
+      const filterType = document.getElementById('filterType').value;
+      feed.innerHTML = '';
+
+      trades.filter(t => (filterType === 'all' || t.type === filterType))
+        .filter(t => t.title.toLowerCase().includes(searchTerm) || t.offer.toLowerCase().includes(searchTerm) || t.want.toLowerCase().includes(searchTerm))
+        .forEach((t, i) => {
+          const div = document.createElement('div');
+          div.className = 'trade';
+          div.innerHTML = `<strong>${t.title}</strong><br><em>Type: ${t.type}</em><p>Offer: ${t.offer} → Want: ${t.want}</p><p>User: ${t.user} | ⭐ ${t.rating}</p><button onclick="acceptTrade(${i})">Accept Trade</button>`;
+          feed.appendChild(div);
+        });
+    }
+
+    function acceptTrade(index) {
+      const trade = trades[index];
+      const message = `You accepted trade: ${trade.title}`;
+      notifications.push(message);
+      updateNotifications();
+      addVoucher(trade);
+    }
+
+    function updateNotifications() {
+      const container = document.getElementById('notifications');
+      container.innerHTML = '';
+      notifications.slice().reverse().forEach(msg => {
+        const div = document.createElement('div');
+        div.className = 'notification';
+        div.textContent = msg;
+        container.appendChild(div);
+      });
+    }
+
+    function addVoucher(trade) {
+      const container = document.getElementById('vouches');
+      const div = document.createElement('div');
+      div.className = 'voucher';
+      div.innerHTML = `Trade completed with ${trade.user}. Leave a rating: <select onchange="rateTrade(this, '${trade.title}')"><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select>`;
+      container.appendChild(div);
+    }
+
+    function rateTrade(select, title) {
+      const rating = parseInt(select.value);
+      const trade = trades.find(t => t.title === title);
+      if (trade) trade.rating = rating;
+      updateFeed();
+    }
+
+    function sendFeedback() {
+      alert('Thanks! Feedback form coming soon.');
+    }
+
+    updateTradeFields();
+  </script>
+</body>
+</html>
